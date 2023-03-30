@@ -1,0 +1,12 @@
+            <div className="lista__lojas">
+                {
+                    lojas.map(function(val){
+                        return(
+                            <div className="lojaSingle">
+                                <p><b>{val.info.nomeLoja}</b>: ID: {val.info.idLoja}</p>
+                            </div>
+                        )
+                    })
+                
+                }
+            </div>
