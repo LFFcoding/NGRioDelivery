@@ -5,14 +5,12 @@ import { auth, db } from './firebase';
 import CorpoAdm from './CorpoAdm';
 import CorpoEntregador from './CorpoEntregador';
 import CorpoLoja from './CorpoLoja';
-import EntregaAL from './EntregaAL';
 
 function App() {
   const [user, setUser] = useState('');
   const [tipoConta, setTipoConta] = useState('');
   const [idLoja, setIdLoja] = useState('');
   const [nomeLoja, setNomeLoja] = useState('');
-  const [entregasAL, setEntregasAL] = useState([]);
 
   
   useEffect(()=>{
@@ -24,14 +22,6 @@ function App() {
           setIdLoja(snapshot.get("idLoja"))
           setNomeLoja(snapshot.get("nomeLoja"))
         });
-        if(tipoConta == 'loja'){
-          db.collection('lojas').doc(user).collection('entregas').where('andamento','==', true).orderBy('timestamp','desc').onSnapshot(function(snapshot){
-            setEntregasAL(snapshot.docs.map(function(document){
-              return{id:document.id, info:document.data()}
-            }))
-          })
-
-        }
       }
     })
     
@@ -42,28 +32,21 @@ function App() {
       <Header user={user} setUser={setUser} setTipoConta={setTipoConta} tipoConta={tipoConta} setIdLoja={setIdLoja} setNomeLoja={setNomeLoja}></Header>
     </div>
   );
-  if(tipoConta == 'loja'){
+  if(tipoConta === 'loja'){
     pagina = (
       <div className='App'>
         <Header user={user} setUser={setUser} setTipoConta={setTipoConta} tipoConta={tipoConta} setIdLoja={setIdLoja} setNomeLoja={setNomeLoja}></Header>
         <CorpoLoja user={user} setUser={setUser} tipoConta={tipoConta} idLoja={idLoja}></CorpoLoja>
-        {
-          entregasAL.map(function(val){
-            return(
-              <EntregaAL id={val.id} info={val.info}></EntregaAL>
-            )
-          })
-        }
       </div>
     );
-  }else if(tipoConta == 'adm'){
+  }else if(tipoConta === 'adm'){
     pagina = (
       <div className='App'>
         <Header user={user} setUser={setUser} setTipoConta={setTipoConta} tipoConta={tipoConta} setIdLoja={setIdLoja} setNomeLoja={setNomeLoja}></Header>
         <CorpoAdm user={user} setUser={setUser} tipoConta={tipoConta}></CorpoAdm>
       </div>
     );
-  }else if(tipoConta == 'entregador'){
+  }else if(tipoConta === 'entregador'){
     pagina = (
       <div className='App'>
         <Header user={user} setUser={setUser} setTipoConta={setTipoConta} tipoConta={tipoConta} setIdLoja={setIdLoja} setNomeLoja={setNomeLoja}></Header>

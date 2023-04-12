@@ -1,8 +1,7 @@
 import React from "react";
-import { useState } from "react";
 import logo from "./logong.jpeg";
 import { auth, db } from "./firebase";
-import firebase from "firebase";
+
 function Header(props){
 
   
@@ -29,8 +28,7 @@ function Header(props){
     });
   };
 
-  function deslogar(e){
-    e.preventDefault();
+  function deslogar(){
     auth.signOut().then(function(val){
         props.setUser(null);            
         window.location.href = '/';
@@ -42,7 +40,7 @@ function Header(props){
         <div className='center'>
 
           <div className='header__logo'>
-            <a href=''><img src={logo} /></a>
+            <a href="#"><img src={logo} /></a>
           </div>
 
           {
@@ -57,7 +55,7 @@ function Header(props){
                 <form onSubmit={(e)=>logar(e)}>
                   <input id='email-login' type="text" placeholder="Login..." />
                   <input id='senha-login' type="password" placeholder="Senha..." />
-                  <input type="submit" name="acao" value="Login" />
+                  <input type="submit" value="Login" />
                 </form>
               </div>
             </div>
