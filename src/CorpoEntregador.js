@@ -29,6 +29,10 @@ function CorpoEntregador(props) {
             })
             setConcluidas(conc);
             setAReceber(total);
+            db.collection('lojas').doc(props.nomeLoja).collection('entregadores').doc(auth.currentUser.displayName).update({
+                totalAReceber: total,
+                totalConcluidas: conc.length
+            }).then(console.log('ok')).catch((err)=>{console.log(err.message)});
         })
     }
     , [])
@@ -112,10 +116,10 @@ function CorpoEntregador(props) {
                     {
                         emAndamento.map((x)=>(
                         <div key={x.id} className="entrega__single">
-                            <p>{x.nomeCliente}<br/></p>
-                            <p>Taxa: R$ {x.custo}<br/></p>
-                            <p><a href={x.image}>Ver nota</a><br/></p>
-                            <button onClick={()=>concluirEntrega(x.id)} >Concluir</button>
+                            <span>{x.nomeCliente}</span>
+                            <span>Taxa: R$ {x.custo}</span>
+                            <span><a href={x.image}>Ver nota</a></span>
+                            <button onClick={()=>concluirEntrega(x.id)}>Concluir</button>
                         </div>))
                     }
                 </div>
@@ -126,7 +130,7 @@ function CorpoEntregador(props) {
                     <h2>Nova entrega</h2>
                     <form id='form-upload' onSubmit={(e)=>uploadPost(e)}>
                         <progress id='progress-upload' value={progress}></progress>
-                        <input id='titulo-upload' type='text' placeholder='Valor' />
+                        <input id='titulo-upload' type='number' placeholder='Valor' />
                         <input id='nomeCliente' type="text" placeholder="Nome do cliente" /> 
                         <input onChange={(e)=>setFile(e.target.files[0])} type='file' name='file' />
                         <input type='submit' value='Enviar' />

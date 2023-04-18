@@ -93,7 +93,12 @@ function CorpoLoja(props) {
                         <h3 className="lista_comum">Motoboys</h3>
                         {
                             motoboys.map(mb => (
-                                <div key={mb.id} className="mb_single"><h2>{mb.nomeEntregador}</h2></div>
+                                <div key={mb.id} className="mb_single">
+                                    <h2>{mb.nomeEntregador}</h2>
+                                    <span>Concluídas: {mb.totalConcluidas}</span>
+                                    <span>Valor Total: R$ {mb.totalAReceber}</span>
+                                    <button>Conferir entregas</button>
+                                </div>
                             ))
                         }
 
@@ -104,10 +109,10 @@ function CorpoLoja(props) {
                             {
                                 emAndamento.map(ea => (
                                     <div key={ea.id} className="ea_single">
-                                        <p>Entregador: {ea.userName}</p><br/>
-                                        <p>Cliente: {ea.nomeCliente}</p><br/>
-                                        <p>Taxa: R${ea.custo}</p><br/>
-                                        <p><a href={ea.image}>Ver Nota</a></p><br/>
+                                        <span>Entregador: {ea.userName}</span>
+                                        <span>Cliente: {ea.nomeCliente}</span>
+                                        <span>Taxa: R${ea.custo}</span>
+                                        <span><a href={ea.image}>Ver Nota</a></span>
                                     </div>
                                 ))
                             }
@@ -118,11 +123,10 @@ function CorpoLoja(props) {
                             {
                                 concluidas.map((ea) => (
                                     <div key={ea.id} className="ea_single">
-                                        <p>Entregador: {ea.userName}</p><br/>
-                                        <p>Cliente: {ea.nomeCliente}</p><br/>
-                                        <p>Taxa: R${ea.custo}</p><br/>
-                                        <p><a href={ea.image}>Ver Nota</a></p><br/>
-                                        <button onClick={()=>conferirEntrega(ea.id)}>Conferida</button>
+                                        <span>Entregador: {ea.userName}</span>
+                                        <span>Cliente: {ea.nomeCliente}</span>
+                                        <span>Taxa: R${ea.custo}</span>
+                                        <span><a href={ea.image}>Ver Nota</a></span>
                                     </div>
                                 ))
                             }

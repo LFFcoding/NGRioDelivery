@@ -297,11 +297,15 @@ body{
   margin: 5px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .entregas_concluidas{
   background-color: rgb(146, 254, 144);
   margin: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .lista_motoboys{
@@ -310,28 +314,33 @@ body{
   margin: 5px;
 }
 .ea_single{
-  width: 100%;
+  width: 97%;
   font-weight: 600;
   font-size: 20px;
   text-align: center;
   background-color: white;
   margin: 3px;
+  padding-top: 12px;
   height: auto;
   display: flex;
   flex-direction: column;
 }
 
-.ea_single p{
-  width: 100%;
+.mb_single{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 5px;
+  background-color: white;
+  height: auto;
 }
 
-.ea_single button{
+.mb_single button{
   cursor: pointer;
   height: 40px;
   background-color: green;
   border-radius: 5px;
   border: 0px;
-  font-size: 25px;
-  margin-top: 20px;
+  font-size: 16px;
   padding: 5px;
 }
